@@ -30,7 +30,7 @@ public class SocksController {
 
     @PostMapping("/outcome")
     public ResponseEntity<?> registerReleaseOfSocks(@RequestBody SocksDto socksDto) {
-        if (socksDataValidator.socksDtoIsValid(socksDto)) {
+        if (socksDataValidator.socksDtoIsValid(socksDto) && socksDataValidator.socksReleaseDataIsConsistent(socksDto)) {
             socksService.registerReleaseOfSocks(socksDto);
             return ResponseEntity.ok().build();
         } else {
