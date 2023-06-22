@@ -27,4 +27,14 @@ public class SocksController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping("/outcome")
+    public ResponseEntity<?> registerReleaseOfSocks(@RequestBody SocksDto socksDto) {
+        if (socksDataValidator.socksDtoIsValid(socksDto)) {
+            socksService.registerReleaseOfSocks(socksDto);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
