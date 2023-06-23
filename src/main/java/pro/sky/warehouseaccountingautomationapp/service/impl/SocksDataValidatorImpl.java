@@ -19,6 +19,8 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
             return false;
         } else if (socksDto.getColor() == null || socksDto.getQuantity() == null || socksDto.getCottonPart() == null) {
             return false;
+        } else if (socksDto.getColor().isBlank()) {
+            return false;
         } else if (socksDto.getCottonPart() < 0 || socksDto.getCottonPart() > 100) {
             return false;
         } else return socksDto.getQuantity() > 0;
@@ -26,7 +28,7 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
 
     @Override
     public boolean socksReleaseDataIsConsistent(SocksDto socksDto) {
-        Socks socksInStock = socksRepository.findSocksByColorAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
+        Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
         if (socksInStock == null) {
             return false;
         } else return socksInStock.getQuantity() >= socksDto.getQuantity();

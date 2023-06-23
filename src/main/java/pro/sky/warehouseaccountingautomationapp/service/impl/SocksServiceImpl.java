@@ -18,7 +18,7 @@ public class SocksServiceImpl implements SocksService {
 
     @Override
     public void registerArrivalOfSocks(SocksDto socksDto) {
-        Socks socksInStock = socksRepository.findSocksByColorAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
+        Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
 
         if (socksInStock == null) {
             Socks newBatchOfSocks = socksMapper.socksDtoToSocks(socksDto);
@@ -31,7 +31,7 @@ public class SocksServiceImpl implements SocksService {
 
     @Override
     public void registerReleaseOfSocks(SocksDto socksDto) {
-        Socks socksInStock = socksRepository.findSocksByColorAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
+        Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
         socksInStock.setQuantity(socksInStock.getQuantity() - socksDto.getQuantity());
         socksRepository.save(socksInStock);
     }
