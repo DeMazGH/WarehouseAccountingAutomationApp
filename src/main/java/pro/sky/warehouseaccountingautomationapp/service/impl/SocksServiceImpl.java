@@ -8,6 +8,10 @@ import pro.sky.warehouseaccountingautomationapp.model.Socks;
 import pro.sky.warehouseaccountingautomationapp.repository.SocksRepository;
 import pro.sky.warehouseaccountingautomationapp.service.SocksService;
 
+import java.util.List;
+
+import static pro.sky.warehouseaccountingautomationapp.constant.Constant.*;
+
 @Service
 @RequiredArgsConstructor
 public class SocksServiceImpl implements SocksService {
@@ -34,5 +38,23 @@ public class SocksServiceImpl implements SocksService {
         Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
         socksInStock.setQuantity(socksInStock.getQuantity() - socksDto.getQuantity());
         socksRepository.save(socksInStock);
+    }
+
+    @Override
+    public Long getTotalNumberOfSocks(String color, String operation, Integer cottonPart) {
+        if (operation.equalsIgnoreCase(MORE_THAN)) {
+            List<Socks> socks = socksRepository.findSocksByColorAndCottonPartGreaterThan(color, cottonPart);
+            return socks == null ? 0 : socks.stream()
+                    .mapToLong(Socks::getQuantity)
+                    .sum();
+        } else if (operation.equalsIgnoreCase(LESS_THAN)) {
+            List<Socks> socks = socksRepository.findSocksByColorAndCottonPartLessThan(color, cottonPart);
+            return socks == null ? 0 : socks.stream()
+                    .mapToLong(Socks::getQuantity)
+                    .sum();
+        } else {
+            Socks socks = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(color, cottonPart);
+            return socks == null ? 0 : socks.getQuantity();
+        }
     }
 }
