@@ -1,6 +1,9 @@
 package pro.sky.warehouseaccountingautomationapp.model;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import lombok.Data;
 
 @Entity
@@ -11,9 +14,7 @@ public class Socks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(value = EnumType.STRING)
-    private Color color;
-
+    private String color;
     private Integer cottonPart;
     private Long quantity;
 }

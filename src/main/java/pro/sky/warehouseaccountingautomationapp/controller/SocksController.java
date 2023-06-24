@@ -2,10 +2,7 @@ package pro.sky.warehouseaccountingautomationapp.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pro.sky.warehouseaccountingautomationapp.dto.SocksDto;
 import pro.sky.warehouseaccountingautomationapp.service.SocksDataValidator;
 import pro.sky.warehouseaccountingautomationapp.service.SocksService;
@@ -38,5 +35,15 @@ public class SocksController {
         }
     }
 
-
+    @GetMapping
+    public ResponseEntity<Long> getTotalNumberOfSocks(
+            @RequestParam String color,
+            @RequestParam String operation,
+            @RequestParam Integer cottonPart) {
+        if (socksDataValidator.getTotalNumberIsValid(color, operation, cottonPart)) {
+             return ResponseEntity.ok(socksService.getTotalNumberOfSocks(color, operation, cottonPart));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
