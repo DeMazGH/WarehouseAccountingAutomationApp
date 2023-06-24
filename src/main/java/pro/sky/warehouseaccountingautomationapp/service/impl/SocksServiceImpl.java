@@ -10,7 +10,8 @@ import pro.sky.warehouseaccountingautomationapp.service.SocksService;
 
 import java.util.List;
 
-import static pro.sky.warehouseaccountingautomationapp.constant.Constant.*;
+import static pro.sky.warehouseaccountingautomationapp.constant.Constant.LESS_THAN;
+import static pro.sky.warehouseaccountingautomationapp.constant.Constant.MORE_THAN;
 
 @Service
 @RequiredArgsConstructor
@@ -44,12 +45,12 @@ public class SocksServiceImpl implements SocksService {
     public Long getTotalNumberOfSocks(String color, String operation, Integer cottonPart) {
         if (operation.equalsIgnoreCase(MORE_THAN)) {
             List<Socks> socks = socksRepository.findSocksByColorAndCottonPartGreaterThan(color, cottonPart);
-            return socks == null ? 0 : socks.stream()
+            return socks.stream()
                     .mapToLong(Socks::getQuantity)
                     .sum();
         } else if (operation.equalsIgnoreCase(LESS_THAN)) {
             List<Socks> socks = socksRepository.findSocksByColorAndCottonPartLessThan(color, cottonPart);
-            return socks == null ? 0 : socks.stream()
+            return socks.stream()
                     .mapToLong(Socks::getQuantity)
                     .sum();
         } else {
