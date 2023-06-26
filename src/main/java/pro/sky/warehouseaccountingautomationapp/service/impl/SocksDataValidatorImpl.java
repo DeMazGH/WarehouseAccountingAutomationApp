@@ -15,6 +15,12 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
 
     private final SocksRepository socksRepository;
 
+    /**
+     * Метод проверяет валидность данных о партии носков.
+     *
+     * @param socksDto данные о партии носков.
+     * @return true - если данные валидны, false - если не валидны.
+     */
     @Override
     public boolean socksDtoIsValid(SocksDto socksDto) {
         if (socksDto == null) {
@@ -28,6 +34,12 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
         } else return socksDto.getQuantity() > 0;
     }
 
+    /**
+     * Метод проверяет согласованность данных для отпуска партии носков.
+     *
+     * @param socksDto данные о партии носков.
+     * @return true - если данные согласованы, false - если не согласованы.
+     */
     @Override
     public boolean socksReleaseDataIsConsistent(SocksDto socksDto) {
         Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
@@ -36,6 +48,14 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
         } else return socksInStock.getQuantity() >= socksDto.getQuantity();
     }
 
+    /**
+     * Метод проверяет валидность параметров переданных в метод {@code getTotalNumberOfSocks}.
+     *
+     * @param color      цвет носков.
+     * @param operation  оператор сравнения значения количества хлопка в составе носков.
+     * @param cottonPart значение процента хлопка в составе носков из сравнения.
+     * @return true - если данные валидны, false - если не валидны.
+     */
     @Override
     public boolean getTotalNumberIsValid(String color, String operation, Integer cottonPart) {
         if (color == null || operation == null || cottonPart == null) {
@@ -45,7 +65,7 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
         } else if (cottonPart < 0 || cottonPart > 100) {
             return false;
         } else return operation.equalsIgnoreCase(MORE_THAN)
-                    || operation.equalsIgnoreCase(LESS_THAN)
-                    || operation.equalsIgnoreCase(EQUAL);
+                || operation.equalsIgnoreCase(LESS_THAN)
+                || operation.equalsIgnoreCase(EQUAL);
     }
 }
