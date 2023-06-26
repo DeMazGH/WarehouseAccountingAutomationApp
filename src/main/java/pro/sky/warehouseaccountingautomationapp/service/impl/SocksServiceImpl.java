@@ -20,7 +20,13 @@ public class SocksServiceImpl implements SocksService {
     private final SocksRepository socksRepository;
     private final SocksMapper socksMapper;
 
-
+    /**
+     * Метод регистрирует приход носков на склад. Ищет сущность носков в БД по цвету и проценту содержания в них хлопка.
+     * Если сущность не найдена создает новую с переданными параметрами и сохраняет ее в БД,
+     * если найдена добавляет количество пар носков переданные в параметрах и сохраняет изменения.
+     *
+     * @param socksDto данные о партии носков.
+     */
     @Override
     public void registerArrivalOfSocks(SocksDto socksDto) {
         Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
@@ -34,6 +40,12 @@ public class SocksServiceImpl implements SocksService {
         }
     }
 
+    /**
+     * Метод регистрирует отпуск носков со склада. Ищет сущность носков в БД по цвету и проценту содержания в них хлопка.
+     * Уменьшает количество пар носков переданные в параметрах и сохраняет изменения.
+     *
+     * @param socksDto данные о партии носков.
+     */
     @Override
     public void registerReleaseOfSocks(SocksDto socksDto) {
         Socks socksInStock = socksRepository.findSocksByColorIgnoreCaseAndCottonPart(socksDto.getColor(), socksDto.getCottonPart());
@@ -41,6 +53,15 @@ public class SocksServiceImpl implements SocksService {
         socksRepository.save(socksInStock);
     }
 
+    /**
+     * Метод возвращает общее количество носков на складе, соответствующих переданным в параметрах критериям запроса.
+     * В зависимости от оператора сравнения производится поиск и подсчет данных из БД.
+     *
+     * @param color      цвет носков.
+     * @param operation  оператор сравнения значения количества хлопка в составе носков.
+     * @param cottonPart значение процента хлопка в составе носков из сравнения.
+     * @return общее количество носков на складе({@code Long})
+     */
     @Override
     public Long getTotalNumberOfSocks(String color, String operation, Integer cottonPart) {
         if (operation.equalsIgnoreCase(MORE_THAN)) {
