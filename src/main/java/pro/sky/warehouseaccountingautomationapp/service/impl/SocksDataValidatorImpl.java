@@ -17,6 +17,7 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
 
     /**
      * Метод проверяет валидность данных о партии носков.
+     *
      * @param socksDto данные о партии носков.
      * @return true - если данные валидны, false - если не валидны.
      */
@@ -35,6 +36,7 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
 
     /**
      * Метод проверяет согласованность данных для отпуска партии носков.
+     *
      * @param socksDto данные о партии носков.
      * @return true - если данные согласованы, false - если не согласованы.
      */
@@ -48,8 +50,9 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
 
     /**
      * Метод проверяет валидность параметров переданных в метод {@code getTotalNumberOfSocks}.
-     * @param color цвет носков.
-     * @param operation оператор сравнения значения количества хлопка в составе носков.
+     *
+     * @param color      цвет носков.
+     * @param operation  оператор сравнения значения количества хлопка в составе носков.
      * @param cottonPart значение процента хлопка в составе носков из сравнения.
      * @return true - если данные валидны, false - если не валидны.
      */
@@ -62,7 +65,7 @@ public class SocksDataValidatorImpl implements SocksDataValidator {
         } else if (cottonPart < 0 || cottonPart > 100) {
             return false;
         } else return operation.equalsIgnoreCase(MORE_THAN)
-                    || operation.equalsIgnoreCase(LESS_THAN)
-                    || operation.equalsIgnoreCase(EQUAL);
+                || operation.equalsIgnoreCase(LESS_THAN)
+                || operation.equalsIgnoreCase(EQUAL);
     }
 }
