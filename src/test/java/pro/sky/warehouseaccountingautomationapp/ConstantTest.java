@@ -12,16 +12,20 @@ public class ConstantTest {
     public static Long SOCKS_ID_2 = 2L;
     public static Long SOCKS_ID_3 = 3L;
 
+    public static String SOCKS_COLOR_BLANK = "   ";
     public static String SOCKS_COLOR_RED = "red";
     public static String SOCKS_COLOR_GREEN = "green";
     public static String SOCKS_COLOR_BLUE = "blue";
 
+    public static Integer SOCKS_COTTON_PART_MINUS_10 = -10;
     public static Integer SOCKS_COTTON_PART_10 = 10;
     public static Integer SOCKS_COTTON_PART_20 = 20;
+    public static Integer SOCKS_COTTON_PART_30 = 30;
     public static Integer SOCKS_COTTON_PART_40 = 40;
     public static Integer SOCKS_COTTON_PART_45 = 45;
     public static Integer SOCKS_COTTON_PART_50 = 50;
     public static Integer SOCKS_COTTON_PART_90 = 90;
+    public static Integer SOCKS_COTTON_PART_110 = 110;
 
     public static Long SOCKS_QUANTITY_0 = 0L;
     public static Long SOCKS_QUANTITY_20 = 20L;
@@ -34,11 +38,14 @@ public class ConstantTest {
     public static String OPERATION_MORE_THAN = "moreThan";
     public static String OPERATION_LESS_THAN = "lessThan";
     public static String OPERATION_EQUAL = "equal";
+    public static String OPERATION_NOT_VALID = "notValid";
 
 
     public static Socks SOCKS_1_RED_10CP_20QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_10, SOCKS_QUANTITY_20);
     public static Socks SOCKS_1_RED_10CP_40QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_10, SOCKS_QUANTITY_40);
+    public static Socks SOCKS_1_RED_20CP_20QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_20, SOCKS_QUANTITY_20);
     public static Socks SOCKS_1_RED_20CP_40QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_20, SOCKS_QUANTITY_40);
+    public static Socks SOCKS_1_RED_30CP_40QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_30, SOCKS_QUANTITY_40);
     public static Socks SOCKS_1_RED_20CP_80QUA = new Socks(SOCKS_ID_1, SOCKS_COLOR_RED, SOCKS_COTTON_PART_20, SOCKS_QUANTITY_80);
 
     public static Socks SOCKS_2_GREEN_40CP_40QUA = new Socks(SOCKS_ID_2, SOCKS_COLOR_GREEN, SOCKS_COTTON_PART_40, SOCKS_QUANTITY_40);
@@ -57,15 +64,26 @@ public class ConstantTest {
     }
 
     public static String SOCKS_DTO_COLOR_RED = "red";
+    public static String SOCKS_DTO_COLOR_BLANK = "    ";
 
+    public static Integer SOCKS_DTO_COTTON_PART_MINUS_10 = -10;
     public static Integer SOCKS_DTO_COTTON_PART_10 = 10;
     public static Integer SOCKS_DTO_COTTON_PART_20 = 20;
+    public static Integer SOCKS_DTO_COTTON_PART_30 = 30;
+    public static Integer SOCKS_DTO_COTTON_PART_120 = 120;
 
+    public static Long SOCKS_DTO_QUANTITY_0 = 0L;
+    public static Long SOCKS_DTO_QUANTITY_10 = 10L;
     public static Long SOCKS_DTO_QUANTITY_20 = 20L;
     public static Long SOCKS_DTO_QUANTITY_40 = 40L;
 
+    public static SocksDto SOCKS_DTO_RED_10CP_10QUA = new SocksDto(SOCKS_DTO_COLOR_RED, SOCKS_DTO_COTTON_PART_10, SOCKS_DTO_QUANTITY_10);
     public static SocksDto SOCKS_DTO_RED_10CP_20QUA = new SocksDto(SOCKS_DTO_COLOR_RED, SOCKS_DTO_COTTON_PART_10, SOCKS_DTO_QUANTITY_20);
+    public static SocksDto SOCKS_DTO_RED_30CP_20QUA = new SocksDto(SOCKS_DTO_COLOR_RED, SOCKS_DTO_COTTON_PART_30, SOCKS_DTO_QUANTITY_20);
+    public static SocksDto SOCKS_DTO_RED_20CP_20QUA = new SocksDto(SOCKS_DTO_COLOR_RED, SOCKS_DTO_COTTON_PART_20, SOCKS_DTO_QUANTITY_20);
     public static SocksDto SOCKS_DTO_RED_20CP_40QUA = new SocksDto(SOCKS_DTO_COLOR_RED, SOCKS_DTO_COTTON_PART_20, SOCKS_DTO_QUANTITY_40);
+    public static SocksDto SOCKS_DTO_NOT_VALID = new SocksDto(SOCKS_DTO_COLOR_BLANK, SOCKS_DTO_COTTON_PART_10, SOCKS_DTO_QUANTITY_20);
+
 
     public static List<Socks> SOCKS_LIST_GREEN_MORE_THAN_40_CP = new ArrayList<>();
 
